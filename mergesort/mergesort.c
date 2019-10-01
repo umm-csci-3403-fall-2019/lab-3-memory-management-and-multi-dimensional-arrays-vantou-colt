@@ -1,6 +1,6 @@
 #include "mergesort.h"
 #include "stdlib.h"
-
+#include "cstring"
 bool needsSorting(int rangeSize){
        return rangeSize >= 2;
        }
@@ -42,17 +42,26 @@ void mergeRanges(int* array, int startIndex, int midPoint, int endPoint){
 
 
 void mergesortRange(int* array, int startIndex, int endIndex){
-  
+	
+
+
   int rangeSize = endIndex - startIndex;
   if (needsSorting(rangeSize)) {
   	int midPoint = (startIndex + endIndex) / 2;
-  	mergesortRange(array, startIndex, midPoint);
-	mergesortRange(array, midPoint, endIndex);
-	mergeRanges(array, startIndex, midPoint, endIndex);
+	int* temparray = (int*)malloc(sizeof(int)*rangeSize);
+	memcpy(temparray,array,sizeof(int)*rangeSize);
+  	mergesortRange(temparray, startIndex, midPoint);
+	mergesortRange(temparray, midPoint, endIndex);
+	mergeRanges(temparray, startIndex, midPoint, endIndex);
+	//free(temparray);
+	//replacing all instances of temparray with array will pass the tests
+	//the problem is that we are not allocating enough memory in temparray
+	//initilization
   }
 }
 
 void mergesort(int arrSize, int* array) {
+
   mergesortRange(array, 0, arrSize);
   }
 
