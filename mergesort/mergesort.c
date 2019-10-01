@@ -36,6 +36,7 @@ void mergeRanges(int* array, int startIndex, int midPoint, int endPoint){
 	for(int i=0;i<rangeSize;++i){
 	array[i+startIndex] = destination[i];
 	}
+	free(destination);
 
 }
 
@@ -52,8 +53,6 @@ void mergesortRange(int* array, int startIndex, int endIndex){
 }
 
 void mergesort(int arrSize, int* array) {
-  // This obviously doesn't actually do any *sorting*, so there's
-  // certainly work still to be done.
   mergesortRange(array, 0, arrSize);
   }
 
