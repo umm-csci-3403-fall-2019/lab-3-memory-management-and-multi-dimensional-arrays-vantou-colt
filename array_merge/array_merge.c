@@ -91,5 +91,3 @@ int* array_merge(int num_arrays, int* sizes, int** values) {
   free(temp);
   return result;
 }
-
-
